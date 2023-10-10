@@ -59,7 +59,7 @@ stations_metadata_df %>%
   ) %>% 
   GQL(., .url = configs$vegvesen_url) %>%
   transform_volumes() %>% 
-  ggplot(aes(x=from, y=volume)) + 
+  ggplot(aes(x=hour, y=volume)) + 
   geom_line() + 
   theme_classic()
 

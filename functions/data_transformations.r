@@ -40,3 +40,17 @@ to_iso8601 <- function(dateTime,measured_days) {
 to_iso8601(as_datetime("2016-09-01 10:11:12"),0)
 to_iso8601(as_datetime("2016-09-01 10:11:12"),-4)
 
+
+#Task 5 ----
+#Adding hour as a column, as i find this more clean in the plotting
+transform_volumes <- function(json_return){
+  finished_data <- 
+    json_return[[1]][[1]][[1]][[1]] %>% 
+    map_dfr(~ as_tibble(.x[[1]])) %>% 
+    unnest_wider(total) %>% 
+    mutate(hour = row_number())
+  return(finished_data)
+}
+
+
+
