@@ -22,3 +22,21 @@ transform_metadata_to_df <- function(data) {
     unnest_wider(latLon)
   return(transformed_data)
 }
+
+
+#TASK 4a -----
+
+to_iso8601 <- function(dateTime,measured_days) {
+  
+  #Apply offset
+  adjusted_dateTime <- dateTime + days(measured_days)
+  
+  # Convert to ISO8601 format and append "Z" for UTC timezone indication
+  iso_date_format <- paste0(anytime::iso8601(adjusted_dateTime), "Z")
+  
+  return(iso_date_format)
+}
+
+to_iso8601(as_datetime("2016-09-01 10:11:12"),0)
+to_iso8601(as_datetime("2016-09-01 10:11:12"),-4)
+
